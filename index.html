@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Summary</title> 
+  <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+
+  <div class="bg-white shadow-lg rounded-2xl w-full max-w-md p-6">
+    <h1 class="text-2xl font-bold text-center text-indigo-600 mb-6">Order Summary</h1>
+
+    <!-- Item List -->
+    <div id="orderItems" class="space-y-4 mb-6">
+      <!-- Items populated via JS -->
+    </div>
+
+    <!-- Summary -->
+    <div class="border-t pt-4 space-y-2">
+      <div class="flex justify-between text-gray-700">
+        <span>Subtotal</span>
+        <span id="subtotal" class="font-medium">$0.00</span>
+      </div>
+      <div class="flex justify-between text-gray-700">
+        <span>Tax (8%)</span>
+        <span id="tax" class="font-medium">$0.00</span>
+      </div>
+      <div class="flex justify-between text-lg font-semibold text-indigo-600">
+        <span>Total</span>
+        <span id="total">$0.00</span>
+      </div>
+    </div>
+
+    <!-- Checkout Button -->
+    <button id="checkoutBtn" class="mt-6 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition-all">
+      Proceed to Checkout
+    </button>
+
+    <!-- Checkout Confirmation -->
+    <div id="checkoutSummary" class="hidden mt-6 p-4 bg-green-100 text-green-800 rounded-lg text-center">
+      ✅ Thank you for your order! Your checkout is complete.
+    </div>
+  </div>
+
+  <script>
+    const items = [
+      {
+        id: 1,
+        name: "Wireless Headphones",
+        price: 59.99,
+        quantity: 1,
+        image: "https://plus.unsplash.com/premium_photo-1679513691474-73102089c117?ixlib=rb-4.1.0&auto=format&fit=crop&q=60&w=1400"
+      },
+      {
+        id: 2,
+        name: "Smart Watch",
+        price: 89.99,
+        quantity: 1,
+        image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?ixlib=rb-4.1.0&auto=format&fit=crop&q=60&w=1400"
+      },
+      {
+        id: 3,
+        name: "Meta Ray Ban Sunglasses",
+        price: 39.99,
+        quantity: 1,
+        image: "https://images.unsplash.com/photo-1556306535-38febf6782e7?ixlib=rb-4.1.0&auto=format&fit=crop&q=60&w=1400"
+      }
+    ];
+
+    const orderContainer = document.getElementById("orderItems");
+    const subtotalEl = document.getElementById("subtotal");
+    const taxEl = document.getElementById("tax");
+    const totalEl = document.getElementById("total");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    const checkoutSummary = document.getElementById("checkoutSummary");
+
+    function renderItems() {
+      orderContainer.innerHTML = "";
+      items.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "flex items-center justify-between border p-3 rounded-lg hover:shadow-md transition";
+        div.innerHTML = `
+          <div class="flex items-center space-x-3">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-md">
+            <div>
+              <p class="font-semibold text-gray-800">${item.name}</p>
+              <p class="text-sm text-gray-500">$${item.price.toFixed(2)} each</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button onclick="updateQuantity(${item.id}, -1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">-</button>
+            <span class="w-6 text-center font-medium">${item.quantity}</span>
+            <button onclick="updateQuantity(${item.id}, 1)" class="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300">+</button>
+          </div>
+        `;
+        orderContainer.appendChild(div);
+      });
+      updateSummary();
+    }
+
+    function updateQuantity(id, change) {
+      const item = items.find(i => i.id === id);
+      if (item) {
+        item.quantity = Math.max(0, item.quantity + change);
+        renderItems();
+      }
+    }
+
+    function updateSummary() {
+      const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      const tax = subtotal * 0.08;
+      const total = subtotal + tax;
+
+      subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+      taxEl.textContent = `$${tax.toFixed(2)}`;
+      totalEl.textContent = `$${total.toFixed(2)}`;
+    }
+
+    // Checkout toggle
+    checkoutBtn.addEventListener("click", () => {
+      checkoutSummary.classList.toggle("hidden");
+      checkoutBtn.textContent = checkoutSummary.classList.contains("hidden") 
+        ? "Proceed to Checkout" 
+        : "Hide Checkout";
+    });
+
+    renderItems();
+  </script>
+
+</body>
+</html>
