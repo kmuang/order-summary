@@ -1,0 +1,13 @@
+[
+  {
+    "to": null,
+    "subject": "Contact from Jordan Lee",
+    "html": "Please send a prepaid return label.",
+    "fromName": "Jordan Lee",
+    "fromEmail": "jordan@example.com",
+    "orderId": "cs_test_demo",
+    "at": "2026-10-27T04:36:28.904Z",
+    "sent": false,
+    "reason": "CONTACT_TO_EMAIL is not set"
+  }
+]

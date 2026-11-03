@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Return policy · Studio Shop</title>
+  <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Instrument Sans", "ui-sans-serif", "system-ui"],
+            serif: ["Instrument Serif", "ui-serif", "Georgia"],
+          },
+        },
+      },
+    };
+  </script>
+  <script src="cart.js"></script>
+</head>
+<body class="min-h-screen text-stone-800 antialiased">
+  <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
+    <header class="mb-10 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <img src="img/logo.png" alt="" class="h-10 w-10 rounded-xl object-cover ring-1 ring-stone-200">
+        <div>
+          <p class="text-xs font-medium uppercase tracking-[0.22em] text-stone-500">Studio Shop</p>
+          <h1 class="font-serif text-3xl leading-none text-stone-900 sm:text-4xl">Returns</h1>
+        </div>
+      </a>
+      <nav class="flex flex-wrap items-center gap-1 text-sm font-medium" aria-label="Site">
+        <a href="/" class="nav-link">Shop</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/returns.html" class="nav-link is-active">Returns</a>
+        <a href="/contact.html" class="nav-link">Contact</a>
+        <a href="/#bag" class="nav-link">Bag <span data-cart-count class="tabular-nums">0</span></a>
+      </nav>
+    </header>
+
+    <div class="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
+      <section class="panel overflow-hidden rounded-3xl ring-1 ring-stone-200/80 shadow-[0_20px_60px_rgba(60,40,20,0.08)]">
+        <div class="border-b border-stone-200/80 px-5 py-6 sm:px-8">
+          <p class="text-xs font-medium uppercase tracking-[0.24em] text-amber-800/80">Return policy</p>
+          <h2 class="mt-2 font-serif text-3xl text-stone-900">30 days. Unused. Easy refunds.</h2>
+          <p class="mt-3 max-w-2xl text-sm leading-relaxed text-stone-600">
+            If an item is not right, send it back within 30 days of delivery. We refund the original payment through Stripe once the return arrives.
+          </p>
+        </div>
+
+        <div class="divide-y divide-stone-200/80 text-sm leading-relaxed text-stone-600">
+          <article class="px-5 py-6 sm:px-8">
+            <h3 class="text-base font-semibold text-stone-900">What can be returned</h3>
+            <p class="mt-2">Items in original condition, unworn or unused, with tags and packaging. Accessories that shipped with the product should come back with it.</p>
+          </article>
+          <article class="px-5 py-6 sm:px-8">
+            <h3 class="text-base font-semibold text-stone-900">What cannot be returned</h3>
+            <p class="mt-2">Opened personal-care items, gift cards, and products damaged by misuse. Final-sale pieces are marked on the product page before you pay.</p>
+          </article>
+          <article class="px-5 py-6 sm:px-8">
+            <h3 class="text-base font-semibold text-stone-900">How to start a return</h3>
+            <ol class="mt-2 list-decimal space-y-2 pl-5">
+              <li>Open the <a href="/contact.html" class="font-medium text-stone-900 underline decoration-stone-300 underline-offset-4">contact form</a> and include your order ID.</li>
+              <li>We reply with a prepaid return label within one business day.</li>
+              <li>Drop the package at any carrier location. Keep the receipt until your refund posts.</li>
+            </ol>
+          </article>
+          <article class="px-5 py-6 sm:px-8">
+            <h3 class="text-base font-semibold text-stone-900">Refunds</h3>
+            <p class="mt-2">Refunds go back to the original payment method, usually within 5–10 business days after we inspect the return. Shipping charged at checkout is refunded when the return is our error or a defective item. Return shipping is free on standard orders.</p>
+          </article>
+          <article class="px-5 py-6 sm:px-8">
+            <h3 class="text-base font-semibold text-stone-900">Exchanges</h3>
+            <p class="mt-2">We do not hold inventory for one-to-one exchanges. Return the original item, then place a new order for the piece you want.</p>
+          </article>
+        </div>
+      </section>
+
+      <aside class="lg:sticky lg:top-8 space-y-4">
+        <div class="rounded-3xl bg-stone-950 p-6 text-stone-100 sm:p-7">
+          <p class="text-xs font-medium uppercase tracking-[0.24em] text-amber-200/80">Need a label?</p>
+          <h2 class="mt-2 font-serif text-3xl text-white">We will send one.</h2>
+          <p class="mt-3 text-sm text-stone-400">Include the Stripe checkout email and order ID so we can match your payment.</p>
+          <a href="/contact.html" class="mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-amber-200 px-4 py-3.5 text-sm font-semibold text-stone-950 hover:bg-amber-100">Start a return</a>
+        </div>
+        <div class="grid grid-cols-1 gap-2 text-center text-[11px] text-stone-500">
+          <div class="rounded-2xl bg-white/70 px-2 py-3 ring-1 ring-stone-200">30-day window</div>
+          <div class="rounded-2xl bg-white/70 px-2 py-3 ring-1 ring-stone-200">Prepaid return labels</div>
+          <div class="rounded-2xl bg-white/70 px-2 py-3 ring-1 ring-stone-200">Refunds via Stripe</div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="mt-16 flex flex-col gap-3 border-t border-stone-200/80 pt-6 text-sm text-stone-500 sm:flex-row sm:items-center sm:justify-between">
+      <p>© 2026 Studio Shop. Secure checkout with Stripe.</p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/" class="hover:text-stone-800">Shop</a>
+        <a href="/about.html" class="hover:text-stone-800">About us</a>
+        <a href="/contact.html" class="hover:text-stone-800">Contact</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
